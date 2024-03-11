@@ -1,9 +1,6 @@
 name: "another repo test"
 
 on:
-  push:
-    branches: [ "test" ]
-    
   workflow_dispatch:
 
 jobs:
