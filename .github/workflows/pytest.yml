@@ -18,3 +18,5 @@ jobs:
       - name: My action
         id: my_action
         uses: parkhs21/git_action@main
+        with:
+          openai-token: ${{ secrets.OPENAI_TOKEN }}
