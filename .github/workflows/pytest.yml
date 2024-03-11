@@ -17,4 +17,4 @@ jobs:
 
       - name: My action
         id: my_action
-        uses: parkhs21/git_actions@main
+        uses: parkhs21/git_action@main
