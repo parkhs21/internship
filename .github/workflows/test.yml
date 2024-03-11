@@ -1,3 +1,5 @@
+name: "another repo test"
+
 on:
   push:
     branches: [ "test" ]
