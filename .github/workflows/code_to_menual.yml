@@ -1,0 +1,17 @@
+name: Code to Manual
+
+on:
+  workflow_dispatch:
+
+jobs:
+  code_to_manual:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: My Action
+        id: my_action
+        uses: parkhs21/git_action@main
+        with:
+          openai-key: ${{ secrets.OPENAI_KEY }}
