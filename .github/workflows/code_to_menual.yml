@@ -18,6 +18,6 @@ jobs:
 
       - name: action output test
         shell: bash
-        run: echo result: "$OUTPUT_RESULT"
+        run: echo result "$OUTPUT_RESULT"
         env:
           OUTPUT_RESULT: ${{ steps.my-action.outputs.result }}
