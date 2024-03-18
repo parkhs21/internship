@@ -9,6 +9,13 @@ on:
         description: 'Pull Request Number'
         required: false
         type: event
+      test1:
+        required: true
+        type: string
+      test2:
+        type: Integer
+      test3:
+        type: Number
 
 jobs:
   code_to_manual:
