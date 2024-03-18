@@ -8,7 +8,7 @@ on:
       pr-number:
         description: 'Pull Request Number'
         required: false
-        type: integer
+        type: environment
 
 jobs:
   code_to_manual:
