@@ -5,10 +5,9 @@ on:
     types: [closed]
   workflow_dispatch:
     inputs:
-      pr-number:
-        description: 'Pull Request Number'
-        required: false
-        type: integer
+      description: 'Pull Request Number'
+      required: false
+      type: integer
 
 jobs:
   code_to_manual:
