@@ -1,11 +1,18 @@
 name: Code to Manual
 
 on:
+  pull_request:
+    types: [closed]
   workflow_dispatch:
+    inputs:
+      description: 'Pull Request Number'
+      required: false
+      type: integer
 
 jobs:
   code_to_manual:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
