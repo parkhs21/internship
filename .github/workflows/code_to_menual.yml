@@ -15,9 +15,3 @@ jobs:
         uses: parkhs21/git_action@main
         with:
           openai-key: ${{ secrets.OPENAI_KEY }}
-
-      - name: action output test
-        shell: bash
-        run: echo result "$OUTPUT_RESULT"
-        env:
-          OUTPUT_RESULT: ${{ steps.my-action.outputs.result }}
