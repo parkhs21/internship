@@ -4,11 +4,6 @@ on:
   pull_request:
     types: [closed]
   workflow_dispatch:
-    inputs:
-      pr-number:
-        description: 'Pull Request Number'
-        required: false
-        type: number
 
 jobs:
   code_to_manual:
