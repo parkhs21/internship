@@ -9,11 +9,8 @@ pipeline {
         }
         
         stage('Test') {
-            steps() {
+            steps {
                 echo 'Testing..'
-            }
-
-            steps() {
                 ls -al
             }
         }   
