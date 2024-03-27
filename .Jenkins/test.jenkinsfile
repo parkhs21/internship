@@ -12,6 +12,10 @@ pipeline {
             steps {
                 echo 'Testing..'
             }
-        }     
+
+            steps{
+                ls -al
+            }
+        }   
     }
 }
