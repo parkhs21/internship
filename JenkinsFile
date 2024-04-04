@@ -1,0 +1,15 @@
+node('dind') {
+
+    stage("Checkout") {
+        checkout scm
+    }
+
+    stage("Run") {
+        withCredentials([string(credentialsId: 'OPENAI_KEY', variable: 'OPENAI_KEY')]) {
+            docker.image("gen_manual").inside("-e OPENAI_API_KEY=${OPENAI_KEY}") {
+                sh "git remote -v"
+                sh "python /git_action/main.py"
+            }
+        }
+    }
+}
