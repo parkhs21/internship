@@ -1,47 +1,19 @@
-node('dind') {
+node('code_to_manual') {
 
     stage("Checkout") {
         checkout scm
     }
 
     stage("Run") {
-        withCredentials([string(credentialsId: 'OPENAI_KEY', variable: 'OPENAI_KEY')]) {
-            docker.image("gen_manual").inside("-e OPENAI_API_KEY=${OPENAI_KEY}") {
+        withCredentials([
+            string(credentialsId: 'Code2Manual_OpenAI_Key', variable: 'openai_key'),
+            string(credentialsId: 'Code2Manual_GitLab_Key', variable: 'gitlab_token')
+        ]) {
+            docker.image("gen_manual").inside("-e OPENAI_API_KEY=${openai_key}"+
+                                            " -e GITLAB_TOKEN=${gitlab_token}"+
+                                            " -e GITLAB_HOME=${env.gitlabSourceRepoHomepage}") {
                 sh "python /git_action/main.py"
             }
         }
-    }
-
-    stage("test gitlab variables") {
-        sh "echo 1.${env.gitlabBranch}"
-        sh "echo 2.${env.gitlabSourceBranch}"
-        sh "echo 3.${env.gitlabActionType}"
-        sh "echo 4.${env.gitlabUserName}"
-        sh "echo 5.${env.gitlabUserUsername}"
-        sh "echo 6.${env.gitlabUserEmail}"
-        sh "echo 7.${env.gitlabSourceRepoHomepage}"
-        sh "echo 8.${env.gitlabSourceRepoName}"
-        sh "echo 9.${env.gitlabSourceNamespace}"
-        sh "echo 10.${env.gitlabSourceRepoURL}"
-        sh "echo 11.${env.gitlabSourceRepoSshUrl}"
-        sh "echo 12.${env.gitlabSourceRepoHttpUrl}"
-        sh "echo 13.${env.gitlabMergeCommitSha}"
-        sh "echo 14.${env.gitlabMergeRequestTitle}"
-        sh "echo 15.${env.gitlabMergeRequestDescription}"
-        sh "echo 16.${env.gitlabMergeRequestId}"
-        sh "echo 17.${env.gitlabMergeRequestIid}"
-        sh "echo 18.${env.gitlabMergeRequestState}"
-        sh "echo 19.${env.gitlabMergedByUser}"
-        sh "echo 20.${env.gitlabMergeRequestAssignee}"
-        sh "echo 21.${env.gitlabMergeRequestLastCommit}"
-        sh "echo 22.${env.gitlabMergeRequestTargetProjectId}"
-        sh "echo 23.${env.gitlabTargetBranch}"
-        sh "echo 24.${env.gitlabTargetRepoName}"
-        sh "echo 25.${env.gitlabTargetNamespace}"
-        sh "echo 26.${env.gitlabTargetRepoSshUrl}"
-        sh "echo 27.${env.gitlabTargetRepoHttpUrl}"
-        sh "echo 28.${env.gitlabBefore}"
-        sh "echo 29.${env.gitlabAfter}"
-        sh "echo 30.${env.gitlabTriggerPhrase}"
     }
 }
